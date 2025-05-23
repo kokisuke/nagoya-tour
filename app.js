@@ -8,28 +8,28 @@ const spots = [
   },
   {
     name: "熱田神宮",
-    image: "https://source.unsplash.com/400x300/?shrine,japan",
+    image: "https://upload.wikimedia.org/wikipedia/commons/c/c0/Atsuta_jingu_shrine_%2C_%E7%86%B1%E7%94%B0%E7%A5%9E%E5%AE%AE_-_panoramio_%289%29.jpg",
     category: "観光地",
     area: "熱田",
     congestionLevel: 0
   },
   {
     name: "名古屋城",
-    image: "https://source.unsplash.com/400x300/?castle,nagoya",
+    image: "https://upload.wikimedia.org/wikipedia/commons/d/d1/%28with_Sakura%29_Nagoya_Castle_Keep_Tower.JPG",
     category: "観光地",
     area: "名城",
     congestionLevel: 1
   },
   {
     name: "名古屋市科学館",
-    image: "https://source.unsplash.com/400x300/?science,museum",
+    image: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Nagoya_Cty_Science_Museum_03%2C_Sakae_Naka_Ward_Nagoya_2020.jpg",
     category: "観光地",
     area: "伏見",
     congestionLevel: 1
   },
   {
     name: "名古屋港水族館",
-    image: "https://source.unsplash.com/400x300/?aquarium,fish",
+    image: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Port_of_Nagoya_Public_Aquarium2.jpg",
     category: "観光地",
     area: "港区",
     congestionLevel: 2
