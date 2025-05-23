@@ -1,7 +1,7 @@
 const spots = [
   {
     name: "オアシス21",
-    image: "https://source.unsplash.com/400x300/?nagoya,modern",
+    image: "https://commons.wikimedia.org/wiki/File:OASIS_21_-_%E3%82%AA%E3%82%A2%E3%82%B7%E3%82%B921_-_panoramio_(2).jpg,
     category: "商業施設",
     area: "栄",
     congestionLevel: 2
