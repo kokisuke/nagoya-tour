@@ -39,3 +39,36 @@ Firebase Realtime Databaseと連携することで、常に最新の混雑度を
 
 ## 🗂 ディレクトリ構成
 
+nagoya-tourism-app/
+├── index.html # メインHTML
+├── style.css # スタイル
+├── app.js # Firebase連携＆描画ロジック
+├── README.md # このファイル
+└── data/
+└── nagoya_spots.json # Firebaseインポート用JSON（開発時用）
+
+---
+
+## 🚀 セットアップ手順
+
+1. [Firebase](https://firebase.google.com/) にアクセスしてプロジェクト作成
+2. Realtime Database を有効化し、「テストモード」に設定
+3. JSONエディタに `data/nagoya_spots.json` をインポート
+4. `index.html` の `<script>` 内の Firebase 設定を、自分のプロジェクト情報に書き換え
+5. ブラウザで `index.html` を開けば動作確認可能！
+
+---
+
+## 📡 今後の拡張案
+
+- 管理画面から混雑度を更新できるUI（管理者向け）
+- カテゴリ／エリア別の絞り込み機能
+- Google Maps APIと連携して地図表示
+- 多言語対応（英語・中国語など）
+
+---
+
+## 📌 ライセンス
+
+このプロジェクトは個人学習目的で作成されています。商用利用は事前にご相談ください。
+
