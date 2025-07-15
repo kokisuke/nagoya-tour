@@ -36,35 +36,35 @@ const spots = [
   },
   {
     name: "大須商店街",
-    image: "https://source.unsplash.com/400x300/?shopping,japan",
+    image: "https://upload.wikimedia.org/wikipedia/commons/5/54/Osu_Summer_Festival_in_Osu_Kannon.2023_-_3.jpg",
     category: "飲食・ショッピング",
     area: "中区大須",
     congestionLevel: 1
   },
   {
     name: "徳川園",
-    image: "https://source.unsplash.com/400x300/?japanese,garden",
+    image: "https://upload.wikimedia.org/wikipedia/commons/9/91/%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%BE%B3%E5%B7%9D%E5%9C%92%E3%81%AE%E9%BE%8D%E4%BB%99%E6%B9%96.jpg",
     category: "観光地",
     area: "東区",
     congestionLevel: 0
   },
   {
     name: "東山動植物園",
-    image: "https://source.unsplash.com/400x300/?zoo,giraffe",
+    image: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Higashiyama_Zoo_%26_Botanical_Gardens_Main_Gate_%282%29%2C_Kameiri_Tashiro-cho_Chikusa_Ward_Nagoya_2021.jpg",
     category: "観光地",
     area: "千種区",
     congestionLevel: 3
   },
   {
     name: "ノリタケの森",
-    image: "https://source.unsplash.com/400x300/?museum,ceramic",
+    image: "https://upload.wikimedia.org/wikipedia/commons/d/d7/Noritake_Garden02%2C_Nishi_Ward_Nagoya_2014.jpg",
     category: "観光地",
     area: "西区",
     congestionLevel: 1
   },
   {
     name: "レゴランド・ジャパン",
-    image: "https://source.unsplash.com/400x300/?themepark,lego",
+    image: "https://upload.wikimedia.org/wikipedia/commons/6/6f/LEGOLAND_JAPAN_Entrance%2C_Kinjofuto_Minato_Ward_Nagoya_2022.jpg",
     category: "テーマパーク",
     area: "港区",
     congestionLevel: 2
