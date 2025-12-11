@@ -36,6 +36,23 @@ h1 {
   width: 100%;
   height: 180px;
   object-fit: cover;
+  display: block;
+  background-color: #f0f0f0;
+  transition: opacity 0.3s ease;
+}
+
+.spot-card img:not([src]) {
+  opacity: 0.5;
+}
+
+.spot-card img[alt]:after {
+  content: attr(alt);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #666;
+  font-size: 14px;
 }
 
 .card-content {
@@ -83,10 +100,132 @@ h1 {
   color: #721c24;
 }
 
+/* リアルタイム更新UI */
+.control-panel {
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.update-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.update-btn {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.update-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.update-btn:active {
+  transform: translateY(0);
+}
+
+.last-update, .auto-status {
+  font-size: 13px;
+  color: #666;
+  padding: 5px 10px;
+  background: #f5f5f5;
+  border-radius: 6px;
+}
+
+.auto-status {
+  color: #4CAF50;
+  background: #e8f5e9;
+}
+
+.data-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.update-time, .data-source {
+  font-size: 11px;
+  color: #999;
+}
+
+.data-source {
+  font-style: italic;
+}
+
+/* 更新通知 */
+.update-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
+}
+
+.update-notification small {
+  display: block;
+  opacity: 0.8;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+/* アニメーション */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
 /* モバイル対応 */
 @media (max-width: 600px) {
   .card-container {
     flex-direction: column;
     align-items: center;
+  }
+  
+  .update-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .update-notification {
+    right: 10px;
+    left: 10px;
+    text-align: center;
   }
 }
