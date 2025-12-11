@@ -1,11 +1,24 @@
 # 🌸 名古屋観光アプリ（Nagoya Tourism App）
 
 名古屋の25箇所の観光地・施設の情報を一覧で確認でき、**リアルタイムで混雑状況**を表示するWebアプリケーションです。  
-インテリジェントな混雑度予測システムと直感的なUIで、快適な観光体験をサポートします。
+インテリジェントな混雑度予測システムと外部API連携により、快適な観光体験をサポートします。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-brightgreen.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![API Ready](https://img.shields.io/badge/API-Ready-brightgreen.svg)](https://shields.io/)
+
+## 🚀 デモ
+
+現在の状態では、**予測アルゴリズム**による混雑度表示を提供しています。  
+外部APIを設定することで、より高精度なリアルタイムデータを取得できます。
+
+**📂 プロジェクトファイル**:
+- `index.html` - メインアプリケーション
+- `api-guide.html` - API設定ガイド（日本語）
+- `app.js` - 混雑監視システムとAPI統合
+- `style.css` - レスポンシブUI
+- `README.md` - プロジェクト説明書
 
 ---
 
@@ -34,9 +47,11 @@
 | 種類           | 内容                                    |
 |----------------|-----------------------------------------|
 | フロントエンド | HTML5 / CSS3 / Vanilla JavaScript (ES6+) |
-| 画像ソース     | Unsplash API / Wikimedia Commons        |
+| 画像ソース     | Unsplash API / Wikimedia Commons / SVG Fallback |
 | デザイン       | Flexbox / CSS Grid / CSS Animations     |
 | 監視システム   | Custom JavaScript Class (CrowdMonitor)  |
+| 外部API統合    | Google Maps Places API / OpenWeatherMap / Twitter API v2 |
+| データ永続化   | LocalStorage (API設定・ユーザー設定)    |
 
 ---
 
@@ -58,15 +73,35 @@
 
 ---
 
+## 🔌 API統合システム
+
+### 対応API
+| API | 機能 | 状態 | 料金 |
+|-----|------|------|------|
+| **🗺️ Google Maps Places API** | 実際の混雑データ・営業時間・レビュー数 | ✅ 統合済み | 月28,500リクエスト無料 |
+| **🌤️ OpenWeatherMap API** | 天気情報による混雑度調整 | ✅ 統合済み | 1日1,000リクエスト無料 |
+| **🐦 Twitter API v2** | SNS投稿からの混雑分析 | ⚠️ CORS制限あり | 月50,000ツイート無料 |
+
+### API設定方法
+1. **ブラウザで `api-guide.html` を開く**
+2. **各APIの詳細な設定手順を確認**
+3. **アプリの「⚙️ API設定」からAPIキーを入力**
+4. **LocalStorageに安全に保存される**
+
+**注意**: APIキーなしでも予測アルゴリズムで動作します。
+
+---
+
 ## 🗂 ファイル構成
 
 ```
 nagoya-tour/
 ├── index.html          # メインHTML（エントリーポイント）
-├── style.css           # スタイルシート（レスポンシブ対応）
-├── app.js              # メインJavaScript（混雑監視システム含む）
+├── api-guide.html      # API設定ガイド（日本語）
+├── style.css           # レスポンシブCSS（API設定UI含む）
+├── app.js              # 混雑監視システム + API統合
 ├── README.md           # プロジェクト説明書
-└── update_images.js    # 画像更新用ユーティリティ（開発時用）
+└── update_images.js    # 画像管理ユーティリティ
 ```
 
 ---
@@ -75,15 +110,20 @@ nagoya-tour/
 
 ### 基本セットアップ
 ```bash
-# リポジトリをクローン
-git clone https://github.com/your-username/nagoya-tour.git
+# プロジェクトをダウンロード
 cd nagoya-tour
 
-# ローカルサーバーを起動（Python使用例）
+# ローカルサーバーを起動
 python3 -m http.server 8080
 
 # ブラウザでアクセス
 open http://localhost:8080
+```
+
+### 📖 API設定（オプション）
+```bash
+# API設定ガイドを開く
+open http://localhost:8080/api-guide.html
 ```
 
 ### 機能の使い方
@@ -128,26 +168,39 @@ open http://localhost:8080
 - **名古屋ドーム（バンテリンドーム）** - プロ野球の本拠地
 - **パロマ瑞穂スタジアム** - サッカー・ラグビーの聖地
 
+### 機能の使い方
+1. **自動更新**: ページ読み込み後3秒で自動的に混雑監視が開始
+2. **手動更新**: 「🔄 今すぐ更新」ボタンで即座に最新データを取得
+3. **API設定**: 「⚙️ API設定」でGoogle Maps・天気情報APIを追加
+4. **リアルタイム表示**: 各カードの下部に最終更新時刻とデータソースを表示
+
 ---
 
-## 🔮 将来的な拡張機能
+## 💡 現在の実装状況
 
-### 実用データ連携
-- **Google Places API**: リアルな混雑データ取得
-- **Twitter API**: SNS投稿からの混雑分析
-- **IoTセンサー**: WiFi接続数による人数カウント
-- **ユーザー投稿機能**: 来場者からのリアルタイムレポート
+### ✅ 完成済み機能
+- **📍 25箇所の名古屋観光スポット**データベース
+- **🔄 リアルタイム混雑監視システム**（CrowdMonitorクラス）
+- **🤖 インテリジェント予測アルゴリズム**（時間・曜日・カテゴリ別）
+- **🌤️ 天気情報連動**（OpenWeatherMap API対応）
+- **🗺️ Google Places API統合**（実データ取得）
+- **⚙️ API設定UI**（モーダル・LocalStorage保存）
+- **📱 レスポンシブデザイン**（全デバイス対応）
+- **🎨 美しいUI/UX**（アニメーション・通知機能）
 
-### 機能強化
-- **ルート最適化**: 混雑を避けた観光ルート提案
-- **プッシュ通知**: 混雑レベル変化の通知
-- **多言語対応**: 英語・中国語・韓国語対応
-- **お気に入り機能**: 個人的なスポットリスト
+### 🔧 技術的特徴
+- **バニラJavaScript**: フレームワーク不要のシンプル構成
+- **エラーハンドリング**: API障害時の自動フォールバック
+- **画像最適化**: Wikimedia + Unsplash + SVG fallback
+- **セキュリティ**: APIキーの安全な管理（LocalStorage）
+- **パフォーマンス**: 適切なレート制限とキャッシング
 
-### データ分析
-- **混雑予測AI**: 機械学習による高精度予測
-- **季節別分析**: 季節・イベントを考慮した予測
-- **統計ダッシュボード**: 管理者向け分析画面
+### 📋 今後の拡張案
+- **🔍 フィルタリング機能**: カテゴリ・エリア・混雑度での絞り込み
+- **🗺️ 地図表示**: Google Maps連動で位置情報表示
+- **📊 統計機能**: 混雑傾向の可視化・分析
+- **🌐 多言語対応**: 英語・中国語・韓国語サポート
+- **📱 PWA化**: オフライン対応・アプリ化
 
 ---
 
@@ -198,6 +251,42 @@ git push origin feature/new-feature
 
 ---
 
+---
+
+## 📱 動作環境・ブラウザ対応
+
+### 対応ブラウザ
+- **Chrome** 90+ ✅
+- **Firefox** 88+ ✅  
+- **Safari** 14+ ✅
+- **Edge** 90+ ✅
+
+### デバイス対応
+- **デスクトップ** - フル機能利用可能
+- **タブレット** - レスポンシブデザイン最適化
+- **スマートフォン** - モバイルファーストUI
+
+---
+
+## 🤝 コントリビューション
+
+プルリクエストやIssueの報告を歓迎します！
+
+### 開発に参加する
+```bash
+# 開発環境セットアップ
+git clone https://github.com/kokihashimoto/nagoya-tour.git
+cd nagoya-tour
+
+# 機能ブランチを作成
+git checkout -b feature/new-feature
+
+# 変更をコミット
+git commit -m "Add: 新機能の追加"
+```
+
+---
+
 ## 👥 作成者・謝辞
 
 **開発者**: [@kokihashimoto](https://github.com/kokihashimoto)
@@ -212,35 +301,14 @@ git push origin feature/new-feature
 
 ---
 
-## 📞 サポート・お問い合わせ
+## 📄 ライセンス
 
-- **バグ報告**: [GitHub Issues](https://github.com/your-username/nagoya-tour/issues)
-- **機能要望**: [GitHub Discussions](https://github.com/your-username/nagoya-tour/discussions)
-- **直接連絡**: [Twitter](https://twitter.com/your-twitter) または [Email](mailto:your-email@example.com)
+このプロジェクトは [MIT License](LICENSE) の下で公開されています。
 
 ---
 
 <div align="center">
   <p><strong>🌸 名古屋の素晴らしい観光体験をお楽しみください！ 🌸</strong></p>
-  <p><em>Made with ❤️ for Nagoya tourism</em></p>
+  <p><em>Made with ❤️ for Nagoya tourism by @kokihashimoto</em></p>
 </div>
-2. Realtime Database を有効化し、「テストモード」に設定
-3. JSONエディタに `data/nagoya_spots.json` をインポート
-4. `index.html` の `<script>` 内の Firebase 設定を、自分のプロジェクト情報に書き換え
-5. ブラウザで `index.html` を開けば動作確認可能！
-
----
-
-## 📡 今後の拡張案
-
-- 管理画面から混雑度を更新できるUI（管理者向け）
-- カテゴリ／エリア別の絞り込み機能
-- Google Maps APIと連携して地図表示
-- 多言語対応（英語・中国語など）
-
----
-
-## 📌 ライセンス
-
-このプロジェクトは個人学習目的で作成されています。商用利用は事前にご相談ください。
 

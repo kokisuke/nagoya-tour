@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API設定ガイド - 名古屋観光アプリ</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    .api-section {
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+    }
+    .step {
+      background: #f8f9fa;
+      padding: 15px;
+      margin: 10px 0;
+      border-left: 4px solid #2196F3;
+      border-radius: 4px;
+    }
+    .warning {
+      background: #fff3cd;
+      border: 1px solid #ffeaa7;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+    }
+    .back-btn {
+      display: inline-block;
+      background: #2196F3;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    .back-btn:hover {
+      background: #1976D2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-btn">← メインアプリに戻る</a>
+    
+    <h1>🔧 API設定ガイド</h1>
+    <p>名古屋観光アプリでリアルタイムデータを取得するためのAPI設定方法を説明します。</p>
+
+    <div class="warning">
+      <strong>⚠️ 注意:</strong> APIキーは個人情報です。他人と共有せず、安全に管理してください。
+    </div>
+
+    <div class="api-section">
+      <h2>🗺️ Google Maps API（Places API）</h2>
+      <p><strong>機能:</strong> 観光スポットの詳細情報、営業時間、レビュー数などのリアルタイムデータを取得</p>
+      
+      <div class="step">
+        <h3>ステップ1: Google Cloud Platformにアクセス</h3>
+        <p>1. <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a> にアクセス</p>
+        <p>2. プロジェクトを作成または選択</p>
+      </div>
+
+      <div class="step">
+        <h3>ステップ2: Places APIを有効化</h3>
+        <p>1. 左メニューから「APIとサービス」→「ライブラリ」</p>
+        <p>2. "Places API" を検索して有効化</p>
+        <p>3. "Maps JavaScript API" も同時に有効化</p>
+      </div>
+
+      <div class="step">
+        <h3>ステップ3: APIキーを作成</h3>
+        <p>1. 「認証情報」→「認証情報を作成」→「APIキー」</p>
+        <p>2. キーの制限を設定（HTTPリファラーで自分のドメインのみ許可推奨）</p>
+        <p>3. APIキーをコピーしてアプリに設定</p>
+      </div>
+
+      <p><strong>料金:</strong> 月28,500リクエストまで無料、その後 $17/1000リクエスト</p>
+    </div>
+
+    <div class="api-section">
+      <h2>🌤️ OpenWeatherMap API</h2>
+      <p><strong>機能:</strong> 名古屋の現在の天気情報を取得し、天候に応じた混雑度予測を調整</p>
+
+      <div class="step">
+        <h3>ステップ1: アカウント作成</h3>
+        <p>1. <a href="https://openweathermap.org/" target="_blank">OpenWeatherMap</a> にアクセス</p>
+        <p>2. "Sign Up" でアカウント作成（無料）</p>
+      </div>
+
+      <div class="step">
+        <h3>ステップ2: APIキーを取得</h3>
+        <p>1. ログイン後、"My API keys" にアクセス</p>
+        <p>2. デフォルトのAPIキーをコピー（即座に利用可能）</p>
+      </div>
+
+      <p><strong>料金:</strong> 1日1,000リクエストまで完全無料</p>
+    </div>
+
+    <div class="api-section">
+      <h2>🐦 Twitter API v2</h2>
+      <p><strong>機能:</strong> 観光スポットに関するリアルタイムな口コミ・混雑情報を収集</p>
+
+      <div class="step">
+        <h3>ステップ1: Developer Portalでアプリ作成</h3>
+        <p>1. <a href="https://developer.twitter.com/" target="_blank">Twitter Developer Portal</a> にアクセス</p>
+        <p>2. 開発者アカウントを申請・作成</p>
+        <p>3. プロジェクトとアプリを作成</p>
+      </div>
+
+      <div class="step">
+        <h3>ステップ2: Bearer Tokenを取得</h3>
+        <p>1. アプリの詳細画面で "Keys and tokens" タブ</p>
+        <p>2. "Bearer Token" を生成・コピー</p>
+      </div>
+
+      <div class="warning">
+        <strong>📝 注意:</strong> 現在、ブラウザから直接Twitter APIにアクセスするとCORS問題が発生します。本格的な利用には、サーバーサイドプロキシの実装が必要です。
+      </div>
+
+      <p><strong>料金:</strong> Essential（無料）プランで月50,000ツイート検索可能</p>
+    </div>
+
+    <h2>🔒 セキュリティのベストプラクティス</h2>
+    <ul>
+      <li><strong>HTTPSのみ:</strong> 本番環境では必ずHTTPS接続を使用</li>
+      <li><strong>リファラー制限:</strong> Google Maps APIキーにはドメイン制限を設定</li>
+      <li><strong>レート制限:</strong> APIコールの頻度を適切に制御</li>
+      <li><strong>エラーハンドリング:</strong> API障害時のフォールバック仕組みを実装</li>
+      <li><strong>キー管理:</strong> APIキーはGitリポジトリにコミットしない</li>
+    </ul>
+
+    <h2>🚀 推奨設定</h2>
+    <p>最初は <strong>OpenWeatherMap API</strong> のみ設定することをお勧めします。無料枠が大きく、天気情報だけでも混雑予測の精度が大幅に向上します。</p>
+    
+    <p>Google Maps APIは高精度ですが有料のため、本格運用時に設定してください。</p>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="index.html" class="back-btn">設定完了 - アプリに戻る</a>
+    </div>
+  </div>
+</body>
+</html>
